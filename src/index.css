@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -19,8 +23,44 @@ body {
 img {
   max-width: 100%;
   display: block;
+  height: auto;
 }
 
 .toast-theme {
   --toastify-color-progress-light: #7a32f2;
+}
+
+:focus-visible {
+  outline: 2px solid #6c2cf2;
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 16px;
+  z-index: 50;
+  padding: 8px 12px;
+  border-radius: 9999px;
+  background: #6c2cf2;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+.site-main {
+  padding-top: 64px;
 }

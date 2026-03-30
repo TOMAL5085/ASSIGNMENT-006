@@ -6,6 +6,7 @@ import playIcon from './assets/play.png'
 import userIcon from './assets/user.png'
 import packageIcon from './assets/package.png'
 import rocketIcon from './assets/rocket.png'
+import cartIcon from './assets/products/shopping-cart.png'
 import products from './data/products'
 
 const stats = [
@@ -98,6 +99,11 @@ function App() {
   const [activeTab, setActiveTab] = useState('products')
   const [cart, setCart] = useState([])
 
+  const cartIds = useMemo(
+    () => new Set(cart.map((item) => item.id)),
+    [cart],
+  )
+
   const cartCount = cart.length
   const total = useMemo(
     () => cart.reduce((sum, item) => sum + item.price, 0),
@@ -105,18 +111,19 @@ function App() {
   )
 
   const handleAdd = (product) => {
-    const exists = cart.some((item) => item.id === product.id)
-    if (exists) {
-      toast.info(`${product.name} is already in your cart.`)
-      return
+    const cartItem = {
+      ...product,
+      cartId: `${product.id}-${Date.now()}-${Math.random()
+        .toString(16)
+        .slice(2)}`,
     }
-    setCart((prev) => [...prev, product])
+    setCart((prev) => [...prev, cartItem])
     toast.success(`${product.name} added to cart.`)
   }
 
-  const handleRemove = (productId) => {
-    const item = cart.find((entry) => entry.id === productId)
-    setCart((prev) => prev.filter((entry) => entry.id !== productId))
+  const handleRemove = (cartId) => {
+    const item = cart.find((entry) => entry.cartId === cartId)
+    setCart((prev) => prev.filter((entry) => entry.cartId !== cartId))
     if (item) {
       toast.warning(`${item.name} removed from cart.`)
     }
@@ -133,7 +140,10 @@ function App() {
 
   return (
     <div className="toast-theme">
-      <header className="bg-white border-b border-slate-100">
+      <a href="#products" className="skip-link">
+        Skip to content
+      </a>
+      <header className="site-header bg-white border-b border-slate-100">
         <div className="mx-auto flex h-[64px] max-w-[980px] items-center justify-between px-4">
           <div className="flex items-center gap-2">
             <span className="text-[22px] font-semibold text-[#6c2cf2]">
@@ -159,41 +169,44 @@ function App() {
           </nav>
           <div className="flex items-center gap-4 shrink-0">
             <div className="relative">
-              <button className="inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-700">
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+              <button
+                type="button"
+                aria-label="Open cart"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-700"
+              >
+                <img
+                  src={cartIcon}
+                  alt=""
                   aria-hidden="true"
-                >
-                  <circle cx="9" cy="20" r="1" />
-                  <circle cx="17" cy="20" r="1" />
-                  <path d="M5 6h2l1.2 8.2a2 2 0 0 0 2 1.8h6.6a2 2 0 0 0 2-1.6l1.1-6.4H7.2" />
-                </svg>
+                  className="h-5 w-5"
+                  decoding="async"
+                />
               </button>
               {cartCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-600 text-[9px] font-semibold text-white">
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#ff4d4f] text-[9px] font-semibold text-white">
                   {cartCount}
                 </span>
               )}
             </div>
-            <button className="hidden text-[12px] font-medium text-slate-700 sm:inline-flex">
+            <button
+              type="button"
+              className="hidden text-[12px] font-medium text-slate-700 sm:inline-flex"
+            >
               Login
             </button>
-            <button className="inline-flex min-w-[110px] items-center justify-center rounded-full bg-[#6c2cf2] px-4 py-2 text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#5b22d0] whitespace-nowrap">
+            <button
+              type="button"
+              className="inline-flex min-w-[110px] items-center justify-center rounded-full bg-[#6c2cf2] px-4 py-2 text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#5b22d0] whitespace-nowrap"
+            >
               Get Started
             </button>
           </div>
         </div>
       </header>
 
-      <section className="bg-white">
-        <div className="mx-auto grid max-w-[980px] items-center gap-14 px-4 py-14 lg:grid-cols-[1.05fr_0.95fr]">
+      <main className="site-main">
+        <section className="bg-white">
+          <div className="mx-auto grid max-w-[980px] items-center gap-14 px-4 py-14 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-[#ede7ff] px-4 py-1 text-[11px] font-semibold text-[#6c2cf2]">
               <span className="flex h-2.5 w-2.5 items-center justify-center rounded-full bg-[#6c2cf2]/20">
@@ -217,12 +230,24 @@ function App() {
               Explore Products
             </a>
             <div className="mt-5 flex flex-wrap items-center gap-3">
-              <button className="inline-flex items-center rounded-full bg-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-white transition hover:bg-[#5b22d0]">
+              <button
+                type="button"
+                className="inline-flex items-center rounded-full bg-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-white transition hover:bg-[#5b22d0]"
+              >
                 Explore Products
               </button>
-              <button className="inline-flex items-center gap-2 rounded-full border border-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-[#6c2cf2] transition hover:bg-[#6c2cf2]/5">
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-full border border-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-[#6c2cf2] transition hover:bg-[#6c2cf2]/5"
+              >
                 <span className="flex h-5 w-5 items-center justify-center rounded-full border border-[#6c2cf2]">
-                  <img src={playIcon} alt="" className="h-3 w-3" />
+                  <img
+                    src={playIcon}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-3 w-3"
+                    decoding="async"
+                  />
                 </span>
                 Watch Demo
               </button>
@@ -234,10 +259,11 @@ function App() {
                 src={heroImage}
                 alt="Digital workflow illustration"
                 className="h-auto w-full rounded-2xl object-cover"
+                decoding="async"
               />
             </div>
           </div>
-        </div>
+          </div>
 
         <div className="bg-[#6c2cf2]">
           <div className="mx-auto flex max-w-[900px] flex-col items-center justify-between gap-6 px-4 py-7 text-center text-white sm:flex-row sm:text-left">
@@ -254,9 +280,9 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
+        </section>
 
-      <section id="products" className="mx-auto max-w-[980px] px-4 py-14">
+        <section id="products" className="mx-auto max-w-[980px] px-4 py-14">
         <div className="text-center">
           <h2 className="text-[24px] font-bold text-slate-900">
             Premium Digital Tools
@@ -268,6 +294,7 @@ function App() {
           <div className="mt-4 flex items-center justify-center">
             <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-1 py-1 shadow-sm">
               <button
+                type="button"
                 className={`rounded-full px-4 py-1.5 text-[11px] font-semibold transition ${
                   activeTab === 'products'
                     ? 'bg-[#6c2cf2] text-white shadow'
@@ -278,6 +305,7 @@ function App() {
                 Products
               </button>
               <button
+                type="button"
                 className={`rounded-full px-4 py-1.5 text-[11px] font-semibold transition ${
                   activeTab === 'cart'
                     ? 'bg-[#6c2cf2] text-white shadow'
@@ -294,7 +322,7 @@ function App() {
         {activeTab === 'products' ? (
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => {
-              const inCart = cart.some((item) => item.id === product.id)
+              const inCart = cartIds.has(product.id)
               return (
                 <div
                   key={product.id}
@@ -303,7 +331,14 @@ function App() {
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50">
-                        <img src={product.icon} alt="" className="h-6 w-6" />
+                        <img
+                          src={product.icon}
+                          alt=""
+                          aria-hidden="true"
+                          className="h-6 w-6"
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
                       <h3 className="text-[15px] font-semibold text-slate-900">
                         {product.name}
@@ -344,6 +379,7 @@ function App() {
                     ))}
                   </ul>
                   <button
+                    type="button"
                     className={`mt-5 inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-[11px] font-semibold transition ${
                       inCart
                         ? 'border border-[#6c2cf2] text-[#6c2cf2]'
@@ -374,12 +410,19 @@ function App() {
               <div className="mt-5 space-y-3">
                 {cart.map((item) => (
                   <div
-                    key={item.id}
+                    key={item.cartId}
                     className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3"
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white">
-                        <img src={item.icon} alt="" className="h-5 w-5" />
+                        <img
+                          src={item.icon}
+                          alt=""
+                          aria-hidden="true"
+                          className="h-5 w-5"
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
                       <div>
                         <p className="text-[12px] font-semibold text-slate-900">
@@ -391,8 +434,9 @@ function App() {
                       </div>
                     </div>
                     <button
+                      type="button"
                       className="text-[11px] font-semibold text-rose-500 hover:text-rose-600"
-                      onClick={() => handleRemove(item.id)}
+                      onClick={() => handleRemove(item.cartId)}
                     >
                       Remove
                     </button>
@@ -409,6 +453,7 @@ function App() {
                 </span>
               </div>
               <button
+                type="button"
                 className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#6c2cf2] px-6 py-2 text-[11px] font-semibold text-white hover:bg-[#5b22d0]"
                 onClick={handleCheckout}
               >
@@ -417,9 +462,9 @@ function App() {
             </div>
           </div>
         )}
-      </section>
+        </section>
 
-      <section id="features" className="bg-white py-14">
+        <section id="features" className="bg-white py-14">
         <div className="mx-auto max-w-[980px] px-4 text-center">
           <h2 className="text-[22px] font-bold text-slate-900">
             Get Started in 3 Steps
@@ -437,7 +482,14 @@ function App() {
                   {step.step}
                 </span>
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#efe9ff]">
-                  <img src={step.icon} alt="" className="h-6 w-6" />
+                  <img
+                    src={step.icon}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-6 w-6"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <h3 className="mt-4 text-[13px] font-semibold text-slate-900">
                   {step.title}
@@ -449,9 +501,9 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
+        </section>
 
-      <section id="pricing" className="mx-auto max-w-[980px] px-4 py-14">
+        <section id="pricing" className="mx-auto max-w-[980px] px-4 py-14">
         <div className="text-center">
           <h2 className="text-[22px] font-bold text-slate-900">
             Simple, Transparent Pricing
@@ -512,9 +564,9 @@ function App() {
             </div>
           ))}
         </div>
-      </section>
+        </section>
 
-      <section
+        <section
         id="testimonials"
         className="bg-[#6c2cf2] py-12 text-center text-white"
       >
@@ -527,10 +579,16 @@ function App() {
             smarter. Start your free trial today.
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-            <button className="inline-flex items-center rounded-full bg-white px-5 py-2 text-[11px] font-semibold text-[#6c2cf2] hover:bg-white/90">
+            <button
+              type="button"
+              className="inline-flex items-center rounded-full bg-white px-5 py-2 text-[11px] font-semibold text-[#6c2cf2] hover:bg-white/90"
+            >
               Explore Products
             </button>
-            <button className="inline-flex items-center rounded-full border border-white/60 px-5 py-2 text-[11px] font-semibold text-white hover:bg-white/10">
+            <button
+              type="button"
+              className="inline-flex items-center rounded-full border border-white/60 px-5 py-2 text-[11px] font-semibold text-white hover:bg-white/10"
+            >
               View Pricing
             </button>
           </div>
@@ -538,7 +596,8 @@ function App() {
             14-day free trial - No credit card required - Cancel anytime
           </p>
         </div>
-      </section>
+        </section>
+      </main>
 
       <footer id="faq" className="bg-[#0d1423] text-slate-300">
         <div className="mx-auto grid max-w-[980px] gap-8 px-4 py-10 md:grid-cols-5">
@@ -579,15 +638,27 @@ function App() {
           <div>
             <h4 className="text-[12px] font-semibold text-white">Social Links</h4>
             <div className="mt-4 flex gap-3">
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]">
+              <button
+                type="button"
+                aria-label="Facebook"
+                className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]"
+              >
                 f
-              </span>
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]">
+              </button>
+              <button
+                type="button"
+                aria-label="LinkedIn"
+                className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]"
+              >
                 in
-              </span>
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]">
+              </button>
+              <button
+                type="button"
+                aria-label="X"
+                className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]"
+              >
                 x
-              </span>
+              </button>
             </div>
           </div>
         </div>

@@ -451,12 +451,12 @@ function App() {
         </div>
       </section>
 
-      <section id="pricing" className="mx-auto max-w-[900px] px-4 py-14">
+      <section id="pricing" className="mx-auto max-w-[980px] px-4 py-14">
         <div className="text-center">
-          <h2 className="text-[20px] font-bold text-slate-900">
+          <h2 className="text-[22px] font-bold text-slate-900">
             Simple, Transparent Pricing
           </h2>
-          <p className="mt-2 text-[11px] text-slate-500">
+          <p className="mt-2 text-[12px] text-slate-500">
             Choose the plan that fits your needs. Upgrade or downgrade anytime.
           </p>
         </div>
@@ -464,24 +464,24 @@ function App() {
           {pricingPlans.map((plan) => (
             <div
               key={plan.name}
-              className={`rounded-3xl border p-5 shadow-sm ${
+              className={`relative rounded-2xl border p-5 shadow-sm ${
                 plan.highlight
-                  ? 'border-brand-600 bg-brand-600 text-white'
-                  : 'border-slate-100 bg-white text-slate-900'
+                  ? 'border-[#6c2cf2] bg-[#6c2cf2] text-white'
+                  : 'border-slate-200 bg-white text-slate-900'
               }`}
             >
               {plan.badge && (
-                <div className="flex justify-center">
-                  <span className="rounded-full bg-amber-100 px-3 py-1 text-[9px] font-semibold text-amber-700">
+                <div className="absolute left-1/2 top-[-10px] -translate-x-1/2">
+                  <span className="rounded-full bg-[#ffe9b0] px-3 py-1 text-[9px] font-semibold text-[#f59e0b]">
                     {plan.badge}
                   </span>
                 </div>
               )}
-              <h3 className="mt-4 text-[12px] font-semibold">{plan.name}</h3>
+              <h3 className="mt-4 text-[13px] font-semibold">{plan.name}</h3>
               <p className="mt-1 text-[11px] opacity-80">{plan.tagline}</p>
               <div className="mt-4 flex items-end gap-1 text-[22px] font-bold">
                 ${plan.price}
-                <span className="text-[11px] font-medium opacity-80">/Month</span>
+                <span className="text-[10px] font-medium opacity-80">/Month</span>
               </div>
               <ul className="mt-4 space-y-2 text-[10px]">
                 {plan.features.map((feature) => (
@@ -503,8 +503,8 @@ function App() {
               <button
                 className={`mt-5 inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-[11px] font-semibold ${
                   plan.highlight
-                    ? 'bg-white text-brand-700 hover:bg-brand-50'
-                    : 'bg-brand-600 text-white hover:bg-brand-700'
+                    ? 'bg-white text-[#6c2cf2] hover:bg-[#f3edff]'
+                    : 'bg-[#6c2cf2] text-white hover:bg-[#5b22d0]'
                 }`}
               >
                 {plan.cta}
@@ -519,77 +519,86 @@ function App() {
         className="bg-[#6c2cf2] py-12 text-center text-white"
       >
         <div className="mx-auto max-w-[720px] px-4">
-          <h2 className="text-[20px] font-bold">
+          <h2 className="text-[20px] font-semibold">
             Ready To Transform Your Workflow?
           </h2>
-          <p className="mt-3 text-[11px] text-brand-100">
+          <p className="mt-3 text-[11px] text-white/70">
             Join thousands of professionals already using DigiTools to work
             smarter. Start your free trial today.
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
-            <button className="inline-flex items-center rounded-full bg-white px-5 py-2 text-[11px] font-semibold text-brand-700 hover:bg-brand-50">
+            <button className="inline-flex items-center rounded-full bg-white px-5 py-2 text-[11px] font-semibold text-[#6c2cf2] hover:bg-white/90">
               Explore Products
             </button>
-            <button className="inline-flex items-center rounded-full border border-white px-5 py-2 text-[11px] font-semibold text-white hover:bg-white/10">
+            <button className="inline-flex items-center rounded-full border border-white/60 px-5 py-2 text-[11px] font-semibold text-white hover:bg-white/10">
               View Pricing
             </button>
           </div>
-          <p className="mt-4 text-[10px] text-brand-100">
+          <p className="mt-4 text-[10px] text-white/70">
             14-day free trial - No credit card required - Cancel anytime
           </p>
         </div>
       </section>
 
-      <footer id="faq" className="bg-slate-900 text-slate-300">
-        <div className="mx-auto grid max-w-[900px] gap-8 px-4 py-10 md:grid-cols-4">
+      <footer id="faq" className="bg-[#0d1423] text-slate-300">
+        <div className="mx-auto grid max-w-[980px] gap-8 px-4 py-10 md:grid-cols-5">
           <div>
             <h3 className="text-lg font-semibold text-white">DigiTools</h3>
-            <p className="mt-3 text-sm text-slate-400">
-              Premium tools to help creators, marketers, and teams work faster.
+            <p className="mt-3 text-[11px] leading-5 text-slate-400">
+              Premium digital tools for creators, professionals, and businesses.
+              Work smarter with our suite of powerful tools.
             </p>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-white">Product</h4>
-            <ul className="mt-3 space-y-2 text-sm text-slate-400">
-              <li>AI Writing</li>
-              <li>Automation</li>
+            <h4 className="text-[12px] font-semibold text-white">Product</h4>
+            <ul className="mt-3 space-y-2 text-[11px] text-slate-400">
+              <li>Features</li>
+              <li>Pricing</li>
               <li>Templates</li>
-              <li>Stock Assets</li>
+              <li>Integrations</li>
             </ul>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-white">Company</h4>
-            <ul className="mt-3 space-y-2 text-sm text-slate-400">
+            <h4 className="text-[12px] font-semibold text-white">Company</h4>
+            <ul className="mt-3 space-y-2 text-[11px] text-slate-400">
               <li>About Us</li>
+              <li>Blog</li>
               <li>Careers</li>
               <li>Press</li>
-              <li>Contact</li>
             </ul>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-white">Resources</h4>
-            <ul className="mt-3 space-y-2 text-sm text-slate-400">
+            <h4 className="text-[12px] font-semibold text-white">Resources</h4>
+            <ul className="mt-3 space-y-2 text-[11px] text-slate-400">
+              <li>Documentation</li>
               <li>Help Center</li>
               <li>Community</li>
-              <li>Partners</li>
               <li>Status</li>
             </ul>
+          </div>
+          <div>
+            <h4 className="text-[12px] font-semibold text-white">Social Links</h4>
             <div className="mt-4 flex gap-3">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs text-white">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]">
                 f
               </span>
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs text-white">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]">
                 in
               </span>
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-xs text-white">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0d1423]">
                 x
               </span>
             </div>
           </div>
         </div>
-        <div className="border-t border-slate-800">
-          <div className="mx-auto max-w-[900px] px-4 py-4 text-center text-xs text-slate-500">
-            (c) 2026 DigiTools. All rights reserved.
+        <div className="border-t border-slate-800/60">
+          <div className="mx-auto flex max-w-[980px] flex-col items-center justify-between gap-3 px-4 py-4 text-[11px] text-slate-500 md:flex-row">
+            <span>(c) 2026 DigiTools. All rights reserved.</span>
+            <div className="flex gap-4">
+              <span>Privacy Policy</span>
+              <span>Terms of Service</span>
+              <span>Cookies</span>
+            </div>
           </div>
         </div>
       </footer>

@@ -193,31 +193,43 @@ function App() {
       </header>
 
       <section className="bg-white">
-        <div className="mx-auto grid max-w-[900px] items-center gap-10 px-4 py-12 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mx-auto grid max-w-[980px] items-center gap-14 px-4 py-14 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-[10px] font-semibold text-brand-700">
-              <span className="h-2 w-2 rounded-full bg-brand-500"></span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#ede7ff] px-4 py-1 text-[11px] font-semibold text-[#6c2cf2]">
+              <span className="flex h-2.5 w-2.5 items-center justify-center rounded-full bg-[#6c2cf2]/20">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#6c2cf2]"></span>
+              </span>
               New: AI-Powered Tools Available
             </span>
-            <h1 className="mt-4 text-[32px] font-extrabold leading-tight text-slate-900 sm:text-[38px]">
-              Supercharge Your Digital Workflow
+            <h1 className="mt-5 text-[38px] font-extrabold leading-tight text-slate-900 sm:text-[44px]">
+              Supercharge Your
+              <br />
+              Digital Workflow
             </h1>
-            <p className="mt-3 max-w-md text-[12px] leading-5 text-slate-500">
+            <p className="mt-4 max-w-md text-[13px] leading-6 text-slate-500">
               Access premium AI tools, design assets, templates, and productivity
-              software in one place. Start creating faster and smarter today.
+              software - all in one place. Start creating faster today.
             </p>
+            <a
+              href="#products"
+              className="mt-2 inline-flex text-[11px] font-semibold text-slate-400 hover:text-slate-600"
+            >
+              Explore Products
+            </a>
             <div className="mt-5 flex flex-wrap items-center gap-3">
-              <button className="inline-flex items-center rounded-full bg-brand-600 px-5 py-2 text-[11px] font-semibold text-white transition hover:bg-brand-700">
+              <button className="inline-flex items-center rounded-full bg-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-white transition hover:bg-[#5b22d0]">
                 Explore Products
               </button>
-              <button className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-5 py-2 text-[11px] font-semibold text-slate-700 transition hover:border-brand-500 hover:text-brand-600">
-                <img src={playIcon} alt="" className="h-4 w-4" />
+              <button className="inline-flex items-center gap-2 rounded-full border border-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-[#6c2cf2] transition hover:bg-[#6c2cf2]/5">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full border border-[#6c2cf2]">
+                  <img src={playIcon} alt="" className="h-3 w-3" />
+                </span>
                 Watch Demo
               </button>
             </div>
           </div>
-          <div className="relative">
-            <div className="rounded-3xl border border-slate-100 bg-white p-4 shadow-sm">
+          <div className="relative flex justify-center">
+            <div className="rounded-2xl bg-slate-100 p-5 shadow-sm">
               <img
                 src={heroImage}
                 alt="Digital workflow illustration"

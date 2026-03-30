@@ -266,16 +266,16 @@ function App() {
           </div>
 
         <div className="bg-[#6c2cf2]">
-          <div className="mx-auto flex max-w-[900px] flex-col items-center justify-between gap-6 px-4 py-7 text-center text-white sm:flex-row sm:text-left">
+          <div className="mx-auto flex max-w-[1600px] min-h-[247px] flex-col items-center justify-center gap-6 px-6 text-center text-white sm:flex-row">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className={`flex-1 sm:px-6 ${
+                className={`flex-1 sm:px-6 flex flex-col items-center ${
                   index !== stats.length - 1 ? 'sm:border-r sm:border-white/20' : ''
                 }`}
               >
-                <p className="text-2xl font-bold">{stat.value}</p>
-                <p className="text-[11px] text-brand-100">{stat.label}</p>
+                <p className="text-[36px] font-bold">{stat.value}</p>
+                <p className="text-[16px] text-brand-100">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -288,8 +288,9 @@ function App() {
             Premium Digital Tools
           </h2>
           <p className="mt-2 text-[12px] text-slate-500">
-            Choose from a curated collection of premium products designed to
-            boost productivity and creativity.
+            Choose from a curated collection of premium products designed
+            <br />
+            to boost productivity and creativity.
           </p>
           <div className="mt-4 flex items-center justify-center">
             <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-1 py-1 shadow-sm">
@@ -465,18 +466,18 @@ function App() {
         </section>
 
         <section id="features" className="bg-white py-14">
-        <div className="mx-auto max-w-[980px] px-4 text-center">
-          <h2 className="text-[22px] font-bold text-slate-900">
+        <div className="mx-auto max-w-[1000px] px-4 text-center">
+          <h2 className="text-[30px] font-bold text-slate-900">
             Get Started in 3 Steps
           </h2>
-          <p className="mt-2 text-[12px] text-slate-500">
+          <p className="mt-2 text-[10px] text-slate-500">
             Start using premium digital tools in minutes, not hours.
           </p>
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {steps.map((step) => (
               <div
                 key={step.step}
-                className="relative rounded-2xl border border-slate-100 bg-white px-6 py-8 text-center shadow-sm"
+                className="relative min-h-[240px] rounded-2xl border border-slate-100 bg-white px-5 py-6 text-center shadow-sm"
               >
                 <span className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-[#6c2cf2] text-[10px] font-semibold text-white">
                   {step.step}
@@ -505,10 +506,10 @@ function App() {
 
         <section id="pricing" className="mx-auto max-w-[980px] px-4 py-14">
         <div className="text-center">
-          <h2 className="text-[22px] font-bold text-slate-900">
+          <h2 className="text-[30px] font-bold text-slate-900">
             Simple, Transparent Pricing
           </h2>
-          <p className="mt-2 text-[12px] text-slate-500">
+          <p className="mt-2 text-[11px] text-slate-500">
             Choose the plan that fits your needs. Upgrade or downgrade anytime.
           </p>
         </div>
@@ -571,12 +572,14 @@ function App() {
         className="bg-[#6c2cf2] py-12 text-center text-white"
       >
         <div className="mx-auto max-w-[720px] px-4">
-          <h2 className="text-[20px] font-semibold">
+          <h2 className="text-[26px] font-semibold">
             Ready To Transform Your Workflow?
           </h2>
-          <p className="mt-3 text-[11px] text-white/70">
+          <p className="mt-3 text-[10px] text-white/70">
             Join thousands of professionals already using DigiTools to work
-            smarter. Start your free trial today.
+            smarter.
+            <br />
+            Start your free trial today.
           </p>
           <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
             <button

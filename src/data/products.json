@@ -2,18 +2,18 @@
   {
     "id": 1,
     "name": "AI Writing Pro",
-    "description": "Generate high-quality articles, captions, and marketing copy in seconds.",
+    "description": "Generate high-quality content, blogs, and marketing copy in seconds with advanced AI.",
     "price": 29,
     "period": "monthly",
     "tag": "Best Seller",
     "tagType": "best seller",
-    "features": ["Unlimited generations", "Tone controls", "Grammar checker"],
+    "features": ["Unlimited AI generations", "50+ writing templates", "Grammar checker"],
     "icon": "writing"
   },
   {
     "id": 2,
     "name": "Design Templates Pack",
-    "description": "Ready-to-use templates for social posts, ads, and presentations.",
+    "description": "2000+ premium templates for social media, presentations, and marketing materials.",
     "price": 49,
     "period": "one-time",
     "tag": "Popular",
@@ -24,7 +24,7 @@
   {
     "id": 3,
     "name": "Premium Stock Assets",
-    "description": "Access millions of photos, videos, and vectors for any project.",
+    "description": "Access millions of royalty-free photos, videos, and graphics for your projects.",
     "price": 19,
     "period": "monthly",
     "tag": "New",
@@ -35,7 +35,7 @@
   {
     "id": 4,
     "name": "Automation Toolkit",
-    "description": "Automate repetitive workflows and save hours every single week.",
+    "description": "Automate repetitive tasks and streamline your workflow with powerful tools.",
     "price": 79,
     "period": "monthly",
     "tag": "Popular",
@@ -46,7 +46,7 @@
   {
     "id": 5,
     "name": "Resume Builder Pro",
-    "description": "Craft professional resumes and cover letters that get seen.",
+    "description": "Create professional resumes and cover letters that land interviews.",
     "price": 15,
     "period": "one-time",
     "tag": "New",
@@ -56,8 +56,8 @@
   },
   {
     "id": 6,
-    "name": "Social Content Kit",
-    "description": "Create engaging social content across every major platform.",
+    "name": "Social Media Content Kit",
+    "description": "Complete toolkit for creating engaging social media content across all platforms.",
     "price": 39,
     "period": "monthly",
     "tag": "Best Seller",

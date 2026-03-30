@@ -83,9 +83,9 @@ const pricingPlans = [
 ]
 
 const tagStyles = {
-  popular: 'bg-brand-100 text-brand-700',
-  new: 'bg-emerald-100 text-emerald-700',
-  'best seller': 'bg-amber-100 text-amber-700',
+  popular: 'bg-[#ede7ff] text-[#6c2cf2]',
+  new: 'bg-[#e9f9ef] text-[#22c55e]',
+  'best seller': 'bg-[#fff4d6] text-[#f59e0b]',
 }
 
 function formatPeriod(period) {
@@ -256,81 +256,83 @@ function App() {
         </div>
       </section>
 
-      <section id="products" className="mx-auto max-w-[900px] px-4 py-14">
+      <section id="products" className="mx-auto max-w-[980px] px-4 py-14">
         <div className="text-center">
-          <h2 className="text-[20px] font-bold text-slate-900">
+          <h2 className="text-[24px] font-bold text-slate-900">
             Premium Digital Tools
           </h2>
-          <p className="mt-2 text-[11px] text-slate-500">
+          <p className="mt-2 text-[12px] text-slate-500">
             Choose from a curated collection of premium products designed to
             boost productivity and creativity.
           </p>
-          <div className="mt-4 flex items-center justify-center gap-3">
-            <button
-              className={`inline-flex items-center rounded-full border px-4 py-1.5 text-[11px] font-semibold transition ${
-                activeTab === 'products'
-                  ? 'border-transparent bg-brand-600 text-white hover:bg-brand-700'
-                  : 'border-slate-200 bg-white text-slate-600 hover:text-slate-900'
-              }`}
-              onClick={() => setActiveTab('products')}
-            >
-              Products
-            </button>
-            <button
-              className={`inline-flex items-center rounded-full border px-4 py-1.5 text-[11px] font-semibold transition ${
-                activeTab === 'cart'
-                  ? 'border-transparent bg-brand-600 text-white hover:bg-brand-700'
-                  : 'border-slate-200 bg-white text-slate-600 hover:text-slate-900'
-              }`}
-              onClick={() => setActiveTab('cart')}
-            >
-              Cart ({cartCount})
-            </button>
+          <div className="mt-4 flex items-center justify-center">
+            <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-1 py-1 shadow-sm">
+              <button
+                className={`rounded-full px-4 py-1.5 text-[11px] font-semibold transition ${
+                  activeTab === 'products'
+                    ? 'bg-[#6c2cf2] text-white shadow'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+                onClick={() => setActiveTab('products')}
+              >
+                Products
+              </button>
+              <button
+                className={`rounded-full px-4 py-1.5 text-[11px] font-semibold transition ${
+                  activeTab === 'cart'
+                    ? 'bg-[#6c2cf2] text-white shadow'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+                onClick={() => setActiveTab('cart')}
+              >
+                Cart ({cartCount})
+              </button>
+            </div>
           </div>
         </div>
 
         {activeTab === 'products' ? (
-          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {products.map((product) => {
               const inCart = cart.some((item) => item.id === product.id)
               return (
                 <div
                   key={product.id}
-                  className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm"
+                  className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-50">
-                        <img src={product.icon} alt="" className="h-5 w-5" />
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50">
+                        <img src={product.icon} alt="" className="h-6 w-6" />
                       </div>
-                      <h3 className="text-[13px] font-semibold text-slate-900">
+                      <h3 className="text-[15px] font-semibold text-slate-900">
                         {product.name}
                       </h3>
                     </div>
                     <span
-                      className={`rounded-full px-2.5 py-1 text-[9px] font-semibold capitalize ${
+                      className={`rounded-full px-4 py-1.5 text-[11px] font-semibold leading-none whitespace-nowrap ${
                         tagStyles[product.tagType] || 'bg-slate-100 text-slate-600'
                       }`}
                     >
                       {product.tag}
                     </span>
                   </div>
-                  <p className="mt-3 text-[11px] text-slate-500">
+                  <p className="mt-3 text-[12px] text-slate-500">
                     {product.description}
                   </p>
                   <div className="mt-3 flex items-end gap-1 text-slate-900">
-                    <span className="text-[16px] font-bold">
+                    <span className="text-[18px] font-bold">
                       ${product.price}
                     </span>
-                    <span className="text-[9px] text-slate-500">
+                    <span className="text-[10px] text-slate-500">
                       /{formatPeriod(product.period)}
                     </span>
                   </div>
-                  <ul className="mt-3 space-y-1.5 text-[10px] text-slate-600">
+                  <ul className="mt-4 space-y-2 text-[11px] text-slate-600">
                     {product.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-2">
                         <svg
-                          className="h-3.5 w-3.5 text-emerald-500"
+                          className="h-4 w-4 text-emerald-500"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                           aria-hidden="true"
@@ -342,10 +344,10 @@ function App() {
                     ))}
                   </ul>
                   <button
-                    className={`mt-4 inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-[11px] font-semibold transition ${
+                    className={`mt-5 inline-flex w-full items-center justify-center rounded-full px-4 py-2 text-[11px] font-semibold transition ${
                       inCart
-                        ? 'border border-brand-500 text-brand-600'
-                        : 'bg-brand-600 text-white hover:bg-brand-700'
+                        ? 'border border-[#6c2cf2] text-[#6c2cf2]'
+                        : 'bg-[#6c2cf2] text-white hover:bg-[#5b22d0]'
                     }`}
                     onClick={() => handleAdd(product)}
                   >
@@ -356,7 +358,7 @@ function App() {
             })}
           </div>
         ) : (
-          <div className="mx-auto mt-8 max-w-[680px] rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
+          <div className="mx-auto mt-8 max-w-[760px] rounded-3xl border border-slate-100 bg-white p-6 shadow-sm">
             <div className="flex items-center justify-between">
               <h3 className="text-[13px] font-semibold text-slate-900">Your Cart</h3>
               <span className="text-[11px] text-slate-500">
@@ -373,7 +375,7 @@ function App() {
                 {cart.map((item) => (
                   <div
                     key={item.id}
-                    className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-4"
+                    className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-100 bg-slate-50 px-4 py-3"
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white">
@@ -399,15 +401,15 @@ function App() {
               </div>
             )}
 
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-4 border-t border-slate-100 pt-4">
-              <div>
-                <p className="text-[11px] text-slate-500">Total</p>
-                <p className="text-[16px] font-bold text-slate-900">
+            <div className="mt-5 border-t border-slate-100 pt-4">
+              <div className="flex items-center justify-between text-[11px] text-slate-500">
+                <span>Total:</span>
+                <span className="text-[14px] font-semibold text-slate-900">
                   ${total}
-                </p>
+                </span>
               </div>
               <button
-                className="inline-flex w-full items-center justify-center rounded-full bg-brand-600 px-6 py-2 text-[11px] font-semibold text-white hover:bg-brand-700 sm:w-auto"
+                className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-[#6c2cf2] px-6 py-2 text-[11px] font-semibold text-white hover:bg-[#5b22d0]"
                 onClick={handleCheckout}
               >
                 Proceed to Checkout
@@ -418,29 +420,29 @@ function App() {
       </section>
 
       <section id="features" className="bg-white py-14">
-        <div className="mx-auto max-w-[900px] px-4 text-center">
-          <h2 className="text-[20px] font-bold text-slate-900">
+        <div className="mx-auto max-w-[980px] px-4 text-center">
+          <h2 className="text-[22px] font-bold text-slate-900">
             Get Started in 3 Steps
           </h2>
-          <p className="mt-2 text-[11px] text-slate-500">
+          <p className="mt-2 text-[12px] text-slate-500">
             Start using premium digital tools in minutes, not hours.
           </p>
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
             {steps.map((step) => (
               <div
                 key={step.step}
-                className="relative rounded-2xl border border-slate-100 bg-white p-5 text-center shadow-sm"
+                className="relative rounded-2xl border border-slate-100 bg-white px-6 py-8 text-center shadow-sm"
               >
-                <span className="absolute right-4 top-4 flex h-6 w-6 items-center justify-center rounded-full bg-brand-600 text-[9px] font-semibold text-white">
+                <span className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-[#6c2cf2] text-[10px] font-semibold text-white">
                   {step.step}
                 </span>
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-50">
-                  <img src={step.icon} alt="" className="h-5 w-5" />
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-[#efe9ff]">
+                  <img src={step.icon} alt="" className="h-6 w-6" />
                 </div>
-                <h3 className="mt-4 text-[12px] font-semibold text-slate-900">
+                <h3 className="mt-4 text-[13px] font-semibold text-slate-900">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-[11px] text-slate-500">
+                <p className="mt-2 text-[11px] leading-5 text-slate-500">
                   {step.description}
                 </p>
               </div>

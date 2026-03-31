@@ -196,7 +196,7 @@ function App() {
             </button>
             <button
               type="button"
-              className="inline-flex min-w-[110px] items-center justify-center rounded-full bg-[#6c2cf2] px-4 py-2 text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#5b22d0] whitespace-nowrap"
+              className="inline-flex min-w-[110px] items-center justify-center rounded-full bg-[#6c2cf2] px-4 py-2 text-[12px] font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-[#5b22d0] hover:shadow-md active:translate-y-0 whitespace-nowrap"
             >
               Get Started
             </button>
@@ -232,23 +232,21 @@ function App() {
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <button
                 type="button"
-                className="inline-flex items-center rounded-full bg-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-white transition hover:bg-[#5b22d0]"
+                className="inline-flex items-center rounded-full bg-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#5b22d0] hover:shadow-md active:translate-y-0"
               >
                 Explore Products
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-full border border-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-[#6c2cf2] transition hover:bg-[#6c2cf2]/5"
+                className="inline-flex items-center gap-2 rounded-full border border-[#6c2cf2] px-5 py-2 text-[11px] font-semibold text-[#6c2cf2] transition duration-200 hover:-translate-y-0.5 hover:bg-[#6c2cf2]/10 hover:shadow-md active:translate-y-0"
               >
-                <span className="flex h-5 w-5 items-center justify-center rounded-full border border-[#6c2cf2]">
-                  <img
-                    src={playIcon}
-                    alt=""
-                    aria-hidden="true"
-                    className="h-3 w-3"
-                    decoding="async"
-                  />
-                </span>
+                <img
+                  src={playIcon}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-3 w-3"
+                  decoding="async"
+                />
                 Watch Demo
               </button>
             </div>
@@ -284,7 +282,7 @@ function App() {
 
         <section id="products" className="mx-auto max-w-[980px] px-4 py-14">
         <div className="text-center">
-          <h2 className="text-[24px] font-bold text-slate-900">
+          <h2 className="text-[24px] font-extrabold text-slate-900">
             Premium Digital Tools
           </h2>
           <p className="mt-2 text-[12px] text-slate-500">
@@ -327,7 +325,7 @@ function App() {
               return (
                 <div
                   key={product.id}
-                  className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm"
+                  className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md"
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
@@ -477,7 +475,7 @@ function App() {
             {steps.map((step) => (
               <div
                 key={step.step}
-                className="relative min-h-[240px] rounded-2xl border border-slate-100 bg-white px-5 py-6 text-center shadow-sm"
+                className="relative min-h-[240px] rounded-2xl border border-slate-100 bg-white px-5 py-6 text-center shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md"
               >
                 <span className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-[#6c2cf2] text-[10px] font-semibold text-white">
                   {step.step}
@@ -517,7 +515,7 @@ function App() {
           {pricingPlans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative rounded-2xl border p-5 shadow-sm ${
+              className={`relative rounded-2xl border p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md ${
                 plan.highlight
                   ? 'border-[#6c2cf2] bg-[#6c2cf2] text-white'
                   : 'border-slate-200 bg-white text-slate-900'
